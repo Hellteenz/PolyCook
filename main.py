@@ -24,7 +24,7 @@ async def start(message: types.Message):
 @dp.message_handler()
 async def bot_message(message: types.Message):
     if message.text == 'Инструкции 📝':
-        await bot.send_message(message.from_user.id, 'Функции личного кабинета ☀️', reply_markup=btn.mainMenu)
+        await bot.send_message(message.from_user.id, 'Функции ☀️', reply_markup=btn.mainMenu)
 
     elif message.text == 'Другой рецепт 🔄' or message.text == 'Поиск по продуктам 🥟':
         await bot.send_message(message.from_user.id, 'Минутку! Мы уже готовим Ваше блюдо! 👨🏽‍🍳',
