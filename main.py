@@ -3,24 +3,43 @@ import time
 import logging
 from aiogram import types, Dispatcher, Bot
 from aiogram.utils import executor
+import buttons as btn
 
 TOKEN = '7191989962:AAHbq6KLVaB3nBb_rMnqagLIM6nm77D8YQM'
 bot = Bot(token=TOKEN)
 logging.basicConfig(level=logging.INFO)
 dp = Dispatcher(bot)
 
+
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
-    keyboardgostart = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    keyboardgostart.add(*[types.KeyboardButton(name) for name in ['Инструкции 📝']])
-    keyboardgostart.add(*[types.KeyboardButton(name) for name in ['Поиск по продуктам 🥟']])
-    keyboardgostart.add(*[types.KeyboardButton(name) for name in ['Поиск по времени 🕰']])
-    keyboardgostart.add(*[types.KeyboardButton(name) for name in ['Случайное блюдо 🍰']])
     await bot.send_message(message.from_user.id,
-                           'Приветствую! 👋 \nЯ - бот PolyCook, который готов помочь разнообразить твою кулинарную '
-                           'жизнь простыми рецептами из того, что есть под рукой☺️\nВам достаточно ввести набор '
+                           'Приветствую! 👋 \nЯ - бот PolyCook, который готов помочь разнообразить Вашу кулинарную '
+                           'жизнь простыми рецептами из того, что есть под рукой☺️\n\nВам достаточно ввести набор '
                            'продуктов, из которого Вы хотите получить блюдо, а я Вам сформирую интересный рецептик 🥰',
-                           reply_markup=keyboardgostart)
+                           reply_markup=btn.mainMenu)
+
+
+# обработка сообщений
+@dp.message_handler()
+async def bot_message(message: types.Message):
+    if message.text == 'Инструкции 📝':
+        await bot.send_message(message.from_user.id, 'Функции личного кабинета ☀️', reply_markup=btn.mainMenu)
+
+    elif message.text == 'Другой рецепт 🔄' or message.text == 'Поиск по продуктам 🥟':
+        await bot.send_message(message.from_user.id, 'Минутку! Мы уже готовим Ваше блюдо! 👨🏽‍🍳',
+                               reply_markup=btn.productsMenu)
+
+    elif message.text == 'Следующий рецепт 🔄' or message.text == 'Поиск по времени 🕰':
+        await bot.send_message(message.from_user.id, 'Минутку! Мы уже готовим Ваше блюдо! 👨🏽‍🍳',
+                               reply_markup=btn.timeMenu)
+
+    elif message.text == 'Другой рецепт 🔁' or message.text == 'Случайное блюдо 🍰':
+        await bot.send_message(message.from_user.id, 'Минутку! Мы уже готовим Ваше блюдо! 👨🏽‍🍳',
+                               reply_markup=btn.randomMenu)
+
+    elif message.text == 'В главное меню 🍋':
+        await bot.send_message(message.from_user.id, 'Главное меню 🍲', reply_markup=btn.mainMenu)
 
 
 if __name__ == '__main__':
