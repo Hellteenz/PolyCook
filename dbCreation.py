@@ -1,21 +1,21 @@
 import sqlite3
 import pandas as pd
-piss = pd.read_csv("pecipes_all.csv")
-piss_ing = piss.get('ingridients')
+table = pd.read_csv("pecipes_all.csv")
+table_ing = table.get('ingridients')
 ing_amount = []
-piss_pure_ing = piss.get('pure_ingridients')
+table_pure_ing = table.get('pure_ingridients')
 pure_ing = []
-piss_instructions = piss.get('instructions')
+table_instructions = table.get('instructions')
 instructions = []
-piss_names = piss.get('name')
+table_names = table.get('name')
 names = []
-for i in range(len(piss)):
-    ia = piss_ing[i].replace('[','').replace(']', '').replace("'",'')
-    pi = piss_pure_ing[i].replace('[','').replace(']', '').replace("'",'').split(', ')
-    inst = piss_instructions[i].replace('[','').replace(']', '').replace("'", '').replace(".,", '.')
-    if type(piss_names[i]) == str:
-        n = piss_names[i].replace("'", '')
-    if len(n) > 0 and len(ia) > 0 and len(pi) > 0 and len(inst) > 0 and type(piss_names[i]) == str:
+for i in range(len(table)):
+    ia = table_ing[i].replace('[','').replace(']', '').replace("'",'')
+    pi = table_pure_ing[i].replace('[','').replace(']', '').replace("'",'').split(', ')
+    inst = table_instructions[i].replace('[','').replace(']', '').replace("'", '').replace(".,", '.')
+    if type(table_names[i]) == str:
+        n = table_names[i].replace("'", '')
+    if len(n) > 0 and len(ia) > 0 and len(pi) > 0 and len(inst) > 0 and type(table_names[i]) == str:
         ing_amount.append(ia)
         pure_ing.append(pi)
         instructions.append(inst)
