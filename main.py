@@ -5,7 +5,7 @@ from aiogram import types, Dispatcher, Bot
 from aiogram.utils import executor
 import buttons as btn
 
-TOKEN = '7191989962:AAHbq6KLVaB3nBb_rMnqagLIM6nm77D8YQM'
+TOKEN = ''
 bot = Bot(token=TOKEN)
 logging.basicConfig(level=logging.INFO)
 dp = Dispatcher(bot)
