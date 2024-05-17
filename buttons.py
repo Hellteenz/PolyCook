@@ -1,35 +1,43 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
-btnMainMenu = KeyboardButton('В главное меню 🍋')
+btnMainMenu = KeyboardButton(text='В главное меню 🍋')
 
-btnInstruction = KeyboardButton('Инструкции 📝')
-btnProducts = KeyboardButton('Поиск по продуктам 🥟')
-btnTime = KeyboardButton('Поиск по времени 🕰')
-btnRandom = KeyboardButton('Случайное блюдо 🍰')
+btnInstruction = KeyboardButton(text='Инструкции 📝')
+btnProducts = KeyboardButton(text='Поиск по продуктам 🥟')
+btnRandom = KeyboardButton(text='Случайное блюдо 🍰')
 
-mainMenu = ReplyKeyboardMarkup(resize_keyboard=True)
-mainMenu.add(btnInstruction)
-mainMenu.add(btnProducts)
-mainMenu.add(btnTime)
-mainMenu.add(btnRandom)
 
-# ------------------
-btnRetry_prod = KeyboardButton('Другой рецепт 🔄')
-
-productsMenu = ReplyKeyboardMarkup(resize_keyboard=True)
-productsMenu.add(btnRetry_prod)
-productsMenu.add(btnMainMenu)
+mainMenuKB = [
+    [btnInstruction],
+    [btnProducts],
+    [btnRandom]
+]
+mainMenu = ReplyKeyboardMarkup(keyboard=mainMenuKB)
 
 # ------------------
-btnRetry_time = KeyboardButton('Следующий рецепт 🔄')
+btnRetry_prod = KeyboardButton(text='Другой рецепт 🔄')
 
-timeMenu = ReplyKeyboardMarkup(resize_keyboard=True)
-timeMenu.add(btnRetry_time)
-timeMenu.add(btnMainMenu)
+productsMenuKB = [
+    [btnRetry_prod],
+    [btnMainMenu]
+]
+productsMenu = ReplyKeyboardMarkup(keyboard=productsMenuKB)
+
 
 # ------------------
-btnRetry_rand = KeyboardButton('Другой рецепт 🔁')
+btnRetry_time = KeyboardButton(text='Следующий рецепт 🔄')
 
-randomMenu = ReplyKeyboardMarkup(resize_keyboard=True)
-randomMenu.add(btnRetry_rand)
-randomMenu.add(btnMainMenu)
+timeMenuKB = [
+    [btnRetry_time],
+    [btnMainMenu]
+]
+timeMenu = ReplyKeyboardMarkup(keyboard=timeMenuKB)
+
+# ------------------
+btnRetry_rand = KeyboardButton(text='Другой рецепт 🔁')
+
+randomMenuKB = [
+    [btnRetry_rand],
+    [btnMainMenu]
+]
+randomMenu = ReplyKeyboardMarkup(keyboard=randomMenuKB)
